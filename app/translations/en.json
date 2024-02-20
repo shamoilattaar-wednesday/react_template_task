@@ -17,6 +17,7 @@
   "wednesday_solutions": "Wednesday Solutions",
   "track_name": "Title name: {trackName}",
   "artist_name": "Artist Name: {artist_name}",
-  "total_cost": "Total Cost: ${price}"
+  "total_cost": "Total Cost: ${price}",
+  "records_found": "Total Records: {totalCount}"
 
 }
