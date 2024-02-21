@@ -1,4 +1,5 @@
-import React, { useEffect, memo, useState} from 'react';
+/* eslint-disable react/prop-types */
+import React, { useEffect, memo, useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
@@ -13,16 +14,11 @@ import { Search as SearchIcon } from '@mui/icons-material';
 import { useHistory } from 'react-router-dom';
 import T from '@components/T';
 import If from '@components/If';
-import For from '@components/For';
-import RepoCard from '@components/RepoCard';
 import TrackCard from '@components/TrackCard';
-import colors from '@app/themes/colors';
 import { selecttracksData, selecttracksError, selecttrackName } from './selectors';
 import { trackCreators } from './reducer';
 import trackSaga from './saga';
 import { translate } from '@app/utils/index';
-import {Route, Link} from 'react-router-dom';
-
 
 const CustomCard = styled(Card)`
   && {
@@ -48,14 +44,12 @@ const Container = styled.div`
     padding: ${(props) => props.padding}px;
   }
 `;
-const RightContent = styled.div`
-  display: flex;
-  align-self: flex-end;
-`;
 
-const StyledT = styled(T)`
+const TrackDet = styled.div`
   && {
-    color: ${colors.gotoStories};
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-gap: 1rem;
   }
 `;
 
@@ -68,104 +62,120 @@ const StyledOutlinedInput = styled(OutlinedInput)`
   }
 `;
 
-export function Track({dispatchTrackDetails,
+export function Track({
+  dispatchTrackDetails,
   dispatchClearTrackDetails,
   tracksData,
   tracksError,
   trackName,
   maxwidth,
-  padding}) {
-  
+  padding
+}) {
   const [loading, setLoading] = useState(false);
   const history = useHistory();
-  
+
   useEffect(() => {
-      const loaded = get(tracksData, 'results', null) || tracksError;
-      if (loaded) {
-        setLoading(false);
-      }
-    }, [tracksData]);
-  useEffect(() => {
-      if (trackName && !tracksData?.results?.length) {
-        dispatchTrackDetails (trackName);
-        setLoading(true);
-      }
-    }, []);
-    
-  const searchTracks = (rName) => {
-      dispatchTrackDetails(rName);
-      setLoading(true);
-    };
-
-    const handleOnChange = (rName) => {
-      if (!isEmpty(rName)) {
-        searchTracks(rName);
-      } else {
-        dispatchClearTrackDetails();
-      }
-    };
-
-    const handleStoriesClick = () => {
-      history.push('/stories');
-      window.location.reload();
-    };
-    const renderSkeleton = () => {
-      return (
-        <>
-          <Skeleton data-testid="skeleton" animation="wave" variant="text" height={40} />
-          <Skeleton data-testid="skeleton" animation="wave" variant="text" height={40} />
-          <Skeleton data-testid="skeleton" animation="wave" variant="text" height={40} />
-        </>
-      );
-    };
-
-    const viewTracks = (item) => {
-      let finalurl = '/tracks/'+item.trackId;
-      history.push({pathname:finalurl, state:{item:item}});
-      window.location.reload();
-
+    const loaded = get(tracksData, 'results', null) || tracksError;
+    if (loaded) {
+      setLoading(false);
     }
+  }, [tracksData]);
+  useEffect(() => {
+    if (trackName && !tracksData?.results?.length) {
+      dispatchTrackDetails(trackName);
+      setLoading(true);
+    }
+  }, []);
 
-    const renderTrackList = () => {
-      
-      const items = get(tracksData, 'results', []);
-      const totalCount = get(tracksData, 'resultCount', 0);
-      return (
-        <If condition={!isEmpty(items) || loading}>
-          <CustomCard>
-            <If condition={!loading} otherwise={renderSkeleton()}>
-              <>
-               
-                <If condition={totalCount !== 0}>
-                  <div>
-                    <T id="records_found" values={{ totalCount }} />
-                  </div>
-                </If>
-                <div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gridGap: '1rem'}}>
+  const searchTracks = (trackName) => {
+    dispatchTrackDetails(trackName);
+    setLoading(true);
+  };
+
+  const handleOnChange = (rName) => {
+    if (!isEmpty(rName)) {
+      searchTracks(rName);
+    } else {
+      dispatchClearTrackDetails();
+    }
+  };
+
+  const renderSkeleton = () => {
+    return (
+      <>
+        <Skeleton data-testid="skeleton" animation="wave" variant="text" height={40} />
+        <Skeleton data-testid="skeleton" animation="wave" variant="text" height={40} />
+        <Skeleton data-testid="skeleton" animation="wave" variant="text" height={40} />
+      </>
+    );
+  };
+
+  const viewTracks = (item) => {
+    let finalurl = '/tracks/' + item.trackId;
+    history.push({ pathname: finalurl, state: { item: item } });
+    window.location.reload();
+  };
+
+  const renderTrackList = () => {
+    const items = get(tracksData, 'results', []);
+    const totalCount = get(tracksData, 'resultCount', 0);
+    return (
+      <If condition={!isEmpty(items) || loading}>
+        <CustomCard>
+          <If condition={!loading} otherwise={renderSkeleton()}>
+            <>
+              <If condition={totalCount !== 0}>
+                <div>
+                  <T id="records_found" values={{ totalCount }} />
+                </div>
+              </If>
+              <TrackDet data-testid="track_det">
                 {items.map((item, index) => (
-                  <div key={index} onClick= {() => viewTracks(item)}>
-                    <TrackCard
-                    key={index}
-                    {...item}
-                  
-                  />
+                  <div key={index} onClick={() => viewTracks(item)}>
+                    <TrackCard key={index} {...item} />
                   </div>
                 ))}
-                </div>
-              </>
-            </If>
-          </CustomCard>
-        </If>
-      );
-    };
+              </TrackDet>
+            </>
+          </If>
+        </CustomCard>
+      </If>
+    );
+  };
+  const renderErrorState = () => {
+    let trackError;
+    if (tracksError) {
+      trackError = tracksError;
+    } else if (isEmpty(trackName)) {
+      trackError = 'track_search_default';
+    }
+    return (
+      !loading &&
+      trackError && (
+        <CustomCard color={tracksError ? 'red' : 'grey'}>
+          <CustomCardHeader title={translate('repo_list')} />
+          <Divider sx={{ mb: 1.25 }} light />
+          <If condition={tracksError} otherwise={<T data-testid="default-message" id={trackError} />}>
+            <T data-testid="error-message" text={tracksError} />
+          </If>
+        </CustomCard>
+      )
+    );
+  };
   const debouncedHandleOnChange = debounce(handleOnChange, 200);
+
+  Track.propTypes = {
+    tracksData: PropTypes.shape({
+      results: PropTypes.array
+    })
+  };
 
   return (
     <Container>
       <CustomCard maxwidth={maxwidth}>
-        <CustomCardHeader title={translate('Track Search')} />
+        <CustomCardHeader title={translate('track_search')} />
         <Divider sx={{ mb: 1.25 }} light />
-        <T marginBottom={10} id="Search Track Details" />
+        <T marginBottom={10} id="search_track_details" />
         <StyledOutlinedInput
           inputProps={{ 'data-testid': 'search-bar' }}
           onChange={(event) => debouncedHandleOnChange(event.target.value)}
@@ -186,9 +196,11 @@ export function Track({dispatchTrackDetails,
         />
       </CustomCard>
       {renderTrackList()}
+      {renderErrorState()}
     </Container>
   );
 }
+
 Track.propTypes = {
   dispatchTrackDetails: PropTypes.func,
   dispatchClearTrackDetails: PropTypes.func,
