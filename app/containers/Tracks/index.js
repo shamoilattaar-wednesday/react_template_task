@@ -1,4 +1,4 @@
-import React, { useEffect, memo, useState } from 'react';
+import React, { useEffect, memo, useState} from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
@@ -21,6 +21,7 @@ import { selecttracksData, selecttracksError, selecttrackName } from './selector
 import { trackCreators } from './reducer';
 import trackSaga from './saga';
 import { translate } from '@app/utils/index';
+import {Route, Link} from 'react-router-dom';
 
 
 const CustomCard = styled(Card)`
@@ -118,6 +119,13 @@ export function Track({dispatchTrackDetails,
       );
     };
 
+    const viewTracks = (item) => {
+      let finalurl = '/tracks/'+item.trackId;
+      history.push({pathname:finalurl, state:{item:item}});
+      window.location.reload();
+
+    }
+
     const renderTrackList = () => {
       
       const items = get(tracksData, 'results', []);
@@ -127,21 +135,23 @@ export function Track({dispatchTrackDetails,
           <CustomCard>
             <If condition={!loading} otherwise={renderSkeleton()}>
               <>
-                <If condition={!isEmpty(trackName)}>
-                  <div>
-                    <T id="search_query" values={{repoName: trackName}} />
-                  </div>
-                </If>
+               
                 <If condition={totalCount !== 0}>
                   <div>
-                    <T id="matching_repos" values={{ totalCount }} />
+                    <T id="records_found" values={{ totalCount }} />
                   </div>
                 </If>
-                <For
-                  of={items}
-                  ParentComponent={Container}
-                  renderItem={(item, index) => <TrackCard key={index} {...item} />}
-                />
+                <div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gridGap: '1rem'}}>
+                {items.map((item, index) => (
+                  <div key={index} onClick= {() => viewTracks(item)}>
+                    <TrackCard
+                    key={index}
+                    {...item}
+                  
+                  />
+                  </div>
+                ))}
+                </div>
               </>
             </If>
           </CustomCard>
@@ -152,14 +162,10 @@ export function Track({dispatchTrackDetails,
 
   return (
     <Container>
-
-       <RightContent>
-        <StyledT onClick={handleStoriesClick} data-testid="redirect" id="stories" />
-      </RightContent>
       <CustomCard maxwidth={maxwidth}>
-        <CustomCardHeader title={translate('track_search')} />
+        <CustomCardHeader title={translate('Track Search')} />
         <Divider sx={{ mb: 1.25 }} light />
-        <T marginBottom={10} id="get_track_details" />
+        <T marginBottom={10} id="Search Track Details" />
         <StyledOutlinedInput
           inputProps={{ 'data-testid': 'search-bar' }}
           onChange={(event) => debouncedHandleOnChange(event.target.value)}
