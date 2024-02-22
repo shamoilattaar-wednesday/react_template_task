@@ -34,3 +34,7 @@ export const apiResponseGenerator = (ok, data) => ({
   ok,
   data
 });
+export const apiResponseGeneratorTrack = (status, data) => ({
+  status,
+  data
+});

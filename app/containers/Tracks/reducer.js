@@ -3,11 +3,11 @@ import { createActions } from 'reduxsauce';
 import get from 'lodash/get';
 
 export const { Types: trackTypes, Creators: trackCreators } = createActions({
-    requestGetTrackDetails: ['trackName'],
-    successGetTrackDetails: ['data'],
-    failureGetTrackDetails: ['error'],
-    clearTrackDetails: {}
-  });
+  requestGetTrackDetails: ['trackName'],
+  successGetTrackDetails: ['data'],
+  failureGetTrackDetails: ['error'],
+  clearTrackDetails: {}
+});
 export const initialState = { trackName: null, tracksData: {}, tracksError: null };
 
 export const trackReducer = (state = initialState, action) =>
