@@ -163,13 +163,7 @@ export function Track({
     );
   };
   const debouncedHandleOnChange = debounce(handleOnChange, 200);
-
-  Track.propTypes = {
-    tracksData: PropTypes.shape({
-      results: PropTypes.array
-    })
-  };
-
+  
   return (
     <Container>
       <CustomCard maxwidth={maxwidth}>
@@ -208,7 +202,8 @@ Track.propTypes = {
   tracksData: PropTypes.shape({
     totalCount: PropTypes.number,
     incompleteResults: PropTypes.bool,
-    items: PropTypes.array
+    items: PropTypes.array,
+    results: PropTypes.array
   }),
   tracksError: PropTypes.string,
   trackName: PropTypes.string,
