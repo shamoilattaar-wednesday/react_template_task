@@ -72,6 +72,8 @@ export function Track({
   padding
 }) {
   const [loading, setLoading] = useState(false);
+  const [isplaying, setIsplaying] = useState(false);
+  const [trackurl, setTrackurl] = useState('');
   const history = useHistory();
 
   useEffect(() => {
@@ -99,6 +101,26 @@ export function Track({
       dispatchClearTrackDetails();
     }
   };
+
+  const handlePlay = (item) => {
+    if (item.previewUrl !== trackurl) {
+      setTrackurl(item.previewUrl);
+      setIsplaying(true);
+    } else {
+      setIsplaying(false);
+    }
+  };
+  useEffect(() => {
+    const audioEl = document.getElementsByClassName('audio-element')[0];
+    if (isplaying) {
+      audioEl.pause();
+      audioEl.load();
+      audioEl.play();
+    } else {
+      audioEl.pause();
+      setTrackurl('');
+    }
+  });
 
   const renderSkeleton = () => {
     return (
@@ -131,8 +153,29 @@ export function Track({
               </If>
               <TrackDet data-testid="track_det">
                 {items.map((item, index) => (
-                  <div key={index} onClick={() => viewTracks(item)}>
-                    <TrackCard key={index} {...item} />
+                  <div key={index}>
+                    <If
+                      condition={item.previewUrl !== trackurl}
+                      otherwise={
+                        <TrackCard
+                          key={index}
+                          {...item}
+                          track={item}
+                          viewTracks={viewTracks}
+                          handlePlay={handlePlay}
+                          isPlaying={true}
+                        />
+                      }
+                    >
+                      <TrackCard
+                        key={index}
+                        {...item}
+                        track={item}
+                        viewTracks={viewTracks}
+                        handlePlay={handlePlay}
+                        isPlaying={false}
+                      />
+                    </If>
                   </div>
                 ))}
               </TrackDet>
@@ -196,6 +239,9 @@ export function Track({
         />
       </CustomCard>
       {renderTrackList()}
+      <audio className="audio-element">
+        <source src={trackurl}></source>
+      </audio>
       {renderErrorState()}
     </Container>
   );

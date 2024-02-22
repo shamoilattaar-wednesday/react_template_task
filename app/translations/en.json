@@ -26,6 +26,9 @@
   "description_unavailable": "Desciption Unavaiable",
   "cost_unavailable": "Total Cost Unavaiable",
   "track_name_unavailable": "Track Name Unavaiable",
-  "artist_unavailable": "Artist Unavaiable"
+  "artist_unavailable": "Artist Unavaiable",
+  "play_audio": "Play Audio",
+  "pause_audio": "Pause Audio",
+  "no_audio": "No Audio File Present"
 
 }

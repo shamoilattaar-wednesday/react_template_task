@@ -83,6 +83,13 @@ exports[`<Track /> tests should render and match the snapshot 1`] = `
           </fieldset>
         </div>
       </div>
+      <audio
+        class="audio-element"
+      >
+        <source
+          src=""
+        />
+      </audio>
       <div
         class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root e1reqvaz4 css-18bnhwu-MuiPaper-root-MuiCard-root"
         color="grey"

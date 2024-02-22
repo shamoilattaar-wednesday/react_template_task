@@ -1,0 +1,113 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<TrackDetails /> should render and match the snapshot 1`] = `
+<body>
+  <div>
+    <div
+      class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root eh9f6zb0 css-e03web-MuiPaper-root-MuiCard-root"
+      data-testid="track-card"
+    >
+      <div>
+        <img
+          src="https://via.placeholder.com/100"
+        />
+        <p
+          class="css-lh9t18 egtqi0h0"
+          data-testid="name"
+        >
+          Title name: Test Collection
+        </p>
+      </div>
+      <p
+        class="css-lh9t18 egtqi0h0"
+        data-testid="artist-name"
+      >
+        Artist Name: Test Artist
+      </p>
+      <p
+        class="css-lh9t18 egtqi0h0"
+        data-testid="track-description"
+      >
+        Desciption: Test Description
+      </p>
+      <p
+        class="css-lh9t18 egtqi0h0"
+        data-testid="total-cost"
+      >
+        Total Cost: $9.99
+      </p>
+      <button>
+        <p
+          class="css-lh9t18 egtqi0h0"
+          data-testid="play-audio"
+        >
+          Play Audio
+        </p>
+      </button>
+      <audio
+        class="audio-element"
+      >
+        <source
+          src="https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview112/v4/4a/68/06/4a6806aa-be22-3eff-8153-d9b1ab9dab8b/mzaf_12411707066990307220.plus.aac.p.m4a"
+        />
+      </audio>
+    </div>
+  </div>
+</body>
+`;
+
+exports[`<TrackDetails /> should render the track details inside the card 1`] = `
+<body>
+  <div>
+    <div
+      class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root eh9f6zb0 css-e03web-MuiPaper-root-MuiCard-root"
+      data-testid="track-card"
+    >
+      <div>
+        <img
+          src="https://via.placeholder.com/100"
+        />
+        <p
+          class="css-lh9t18 egtqi0h0"
+          data-testid="name"
+        >
+          Title name: Test Collection
+        </p>
+      </div>
+      <p
+        class="css-lh9t18 egtqi0h0"
+        data-testid="artist-name"
+      >
+        Artist Name: Test Artist
+      </p>
+      <p
+        class="css-lh9t18 egtqi0h0"
+        data-testid="track-description"
+      >
+        Desciption: Test Description
+      </p>
+      <p
+        class="css-lh9t18 egtqi0h0"
+        data-testid="total-cost"
+      >
+        Total Cost: $9.99
+      </p>
+      <button>
+        <p
+          class="css-lh9t18 egtqi0h0"
+          data-testid="play-audio"
+        >
+          Play Audio
+        </p>
+      </button>
+      <audio
+        class="audio-element"
+      >
+        <source
+          src="https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview112/v4/4a/68/06/4a6806aa-be22-3eff-8153-d9b1ab9dab8b/mzaf_12411707066990307220.plus.aac.p.m4a"
+        />
+      </audio>
+    </div>
+  </div>
+</body>
+`;
