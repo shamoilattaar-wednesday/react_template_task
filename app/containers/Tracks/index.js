@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import React, { useEffect, memo, useState } from 'react';
+import React, { useEffect, memo, useState, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
@@ -75,6 +75,7 @@ export function Track({
   const [isplaying, setIsplaying] = useState(false);
   const [trackurl, setTrackurl] = useState('');
   const history = useHistory();
+  const audioref = useRef(null);
 
   useEffect(() => {
     const loaded = get(tracksData, 'results', null) || tracksError;
@@ -111,16 +112,15 @@ export function Track({
     }
   };
   useEffect(() => {
-    const audioEl = document.getElementsByClassName('audio-element')[0];
     if (isplaying) {
-      audioEl.pause();
-      audioEl.load();
-      audioEl.play();
+      audioref.current.pause();
+      audioref.current.load();
+      audioref.current.play();
     } else {
-      audioEl.pause();
+      audioref.current.pause();
       setTrackurl('');
     }
-  });
+  }, [isplaying]);
 
   const renderSkeleton = () => {
     return (
@@ -239,7 +239,7 @@ export function Track({
         />
       </CustomCard>
       {renderTrackList()}
-      <audio className="audio-element">
+      <audio ref={audioref} className="audio-element">
         <source src={trackurl}></source>
       </audio>
       {renderErrorState()}
