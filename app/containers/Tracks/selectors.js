@@ -16,10 +16,8 @@ export const selectTrackDomain = (state) => state.track || initialState;
  * Default selector used by HomeContainer
  */
 
-export const selecttracksData = () =>
-  createSelector(selectTrackDomain, (substate) => get(substate, 'tracksData'));
+export const selecttracksData = () => createSelector(selectTrackDomain, (substate) => get(substate, 'tracksData'));
 
-export const selecttracksError = () =>
-  createSelector(selectTrackDomain, (substate) => get(substate, 'tracksError'));
+export const selecttracksError = () => createSelector(selectTrackDomain, (substate) => get(substate, 'tracksError'));
 
 export const selecttrackName = () => createSelector(selectTrackDomain, (substate) => get(substate, 'trackName'));

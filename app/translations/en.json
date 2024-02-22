@@ -18,6 +18,17 @@
   "track_name": "Title name: {trackName}",
   "artist_name": "Artist Name: {artist_name}",
   "total_cost": "Total Cost: ${price}",
-  "records_found": "Total Records: {totalCount}"
+  "records_found": "Total Records: {totalCount}",
+  "track_search": "Track Search",
+  "search_track_details": "Search Track Details",
+  "track_search_default": "Search for a track by entering it's name in the search box",
+  "track_description": "Desciption: {track_description}",
+  "description_unavailable": "Desciption Unavaiable",
+  "cost_unavailable": "Total Cost Unavaiable",
+  "track_name_unavailable": "Track Name Unavaiable",
+  "artist_unavailable": "Artist Unavaiable",
+  "play_audio": "Play Audio",
+  "pause_audio": "Pause Audio",
+  "no_audio": "No Audio File Present"
 
 }

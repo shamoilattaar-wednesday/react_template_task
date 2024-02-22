@@ -1,5 +1,5 @@
 import { put, call, takeLatest } from 'redux-saga/effects';
-import { getRepos, getTracks } from '@services/repoApi';
+import { getTracks } from '@services/repoApi';
 import { trackTypes, trackCreators } from './reducer';
 
 const { REQUEST_GET_TRACK_DETAILS } = trackTypes;
