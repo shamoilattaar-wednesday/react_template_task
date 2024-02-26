@@ -22,11 +22,11 @@ const StyledHeader = styled(AppBar)`
     flex-direction: row;
   }
 `;
-const Logo = styled.img`
-  height: ${(props) => props.height};
-  width: ${(props) => props.height};
-  margin-top: 1rem;
-`;
+// const Logo = styled.img`
+//   height: ${(props) => props.height};
+//   width: ${(props) => props.height};
+//   margin-top: 1rem;
+// `;
 const Title = styled(T)`
   && {
     color: ${colors.text};

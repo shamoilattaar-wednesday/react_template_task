@@ -15,9 +15,9 @@ import { useHistory } from 'react-router-dom';
 import T from '@components/T';
 import If from '@components/If';
 import TrackCard from '@components/TrackCard';
-import { selecttracksData, selecttracksError, selecttrackName } from './selectors';
-import { trackCreators } from './reducer';
-import trackSaga from './saga';
+import { selecttracksData, selecttracksError, selecttrackName } from '../Provider/selectors';
+import { trackCreators } from '../Provider/reducer';
+import trackSaga from '../Provider/saga';
 import { translate } from '@app/utils/index';
 
 const CustomCard = styled(Card)`

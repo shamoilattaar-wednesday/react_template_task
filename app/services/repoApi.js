@@ -4,3 +4,4 @@ const repoApi = generateApiClient('github');
 
 export const getRepos = (repoName) => repoApi.get(`/search/repositories?q=${repoName}`);
 export const getTracks = (trackName) => axios.get(`https://itunes.apple.com/search?term=${trackName}`);
+export const getTrackById = (trackId) => axios.get(`https://itunes.apple.com/lookup?id=${trackId}`);

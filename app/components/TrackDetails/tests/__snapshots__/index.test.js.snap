@@ -8,49 +8,38 @@ exports[`<TrackDetails /> should render and match the snapshot 1`] = `
       data-testid="track-card"
     >
       <div>
-        <img
-          src="https://via.placeholder.com/100"
-        />
+        <img />
         <p
           class="css-lh9t18 egtqi0h0"
           data-testid="name"
         >
-          Title name: Test Collection
+          Title name:
         </p>
       </div>
       <p
         class="css-lh9t18 egtqi0h0"
-        data-testid="artist-name"
+        data-testid="artist-unavailable"
       >
-        Artist Name: Test Artist
+        Artist Unavaiable
       </p>
       <p
         class="css-lh9t18 egtqi0h0"
-        data-testid="track-description"
+        data-testid="description-unavailable"
       >
-        Desciption: Test Description
+        Desciption Unavaiable
       </p>
       <p
         class="css-lh9t18 egtqi0h0"
-        data-testid="total-cost"
+        data-testid="cost-unavaiable"
       >
-        Total Cost: $9.99
+        Total Cost Unavaiable
       </p>
-      <button>
-        <p
-          class="css-lh9t18 egtqi0h0"
-          data-testid="play-audio"
-        >
-          Play Audio
-        </p>
-      </button>
-      <audio
-        class="audio-element"
+      <p
+        class="css-lh9t18 egtqi0h0"
+        data-testid="no-audio"
       >
-        <source
-          src="https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview112/v4/4a/68/06/4a6806aa-be22-3eff-8153-d9b1ab9dab8b/mzaf_12411707066990307220.plus.aac.p.m4a"
-        />
-      </audio>
+        No Audio File Present
+      </p>
     </div>
   </div>
 </body>
@@ -84,7 +73,7 @@ exports[`<TrackDetails /> should render the track details inside the card 1`] = 
         class="css-lh9t18 egtqi0h0"
         data-testid="track-description"
       >
-        Desciption: Test Description
+        Desciption:
       </p>
       <p
         class="css-lh9t18 egtqi0h0"

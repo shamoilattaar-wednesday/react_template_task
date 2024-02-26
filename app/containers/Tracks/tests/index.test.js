@@ -107,4 +107,29 @@ describe('<Track /> tests', () => {
     const { getByTestId } = renderProvider(<Track tracksData={tracksData} dispatchTrackDetails={submitSpy} />);
     expect(getByTestId('track_det')).toBeInTheDocument();
   });
+
+  it('should render the data and call viewTracks', async () => {
+    const tracksData = { results: [{ trackName: 'react-template' }] };
+    const { getByTestId } = renderProvider(<Track tracksData={tracksData} dispatchTrackDetails={submitSpy} />);
+    expect(getByTestId('track-details')).toBeInTheDocument();
+    fireEvent.click(getByTestId('track-details'));
+    await timeout(500);
+    expect(getByTestId('track-card')).toBeInTheDocument();
+  });
+  it('should render the data and call handlePlay', async () => {
+    const tracksData = {
+      results: [
+        {
+          trackName: 'react-template',
+          previewUrl:
+            'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview112/v4/4a/68/06/4a6806aa-be22-3eff-8153-d9b1ab9dab8b/mzaf_12411707066990307220.plus.aac.p.m4a'
+        }
+      ]
+    };
+    const { getByTestId } = renderProvider(<Track tracksData={tracksData} dispatchTrackDetails={submitSpy} />);
+    expect(getByTestId('play-audio')).toBeInTheDocument();
+    fireEvent.click(getByTestId('play-audio'));
+    await timeout(500);
+    expect(getByTestId('pause-audio')).toBeInTheDocument();
+  });
 });

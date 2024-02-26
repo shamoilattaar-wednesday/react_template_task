@@ -3,7 +3,7 @@
 exports[`<App /> container tests should render and match the snapshot 1`] = `
 <div>
   <header
-    class="MuiPaper-root MuiPaper-elevation MuiPaper-elevation4 MuiAppBar-root MuiAppBar-colorPrimary MuiAppBar-positionRelative esmlbx62 css-yd54ol-MuiPaper-root-MuiAppBar-root"
+    class="MuiPaper-root MuiPaper-elevation MuiPaper-elevation4 MuiAppBar-root MuiAppBar-colorPrimary MuiAppBar-positionRelative esmlbx61 css-yd54ol-MuiPaper-root-MuiAppBar-root"
     data-testid="header"
   >
     <p
