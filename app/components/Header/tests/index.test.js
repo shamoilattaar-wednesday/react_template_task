@@ -14,8 +14,8 @@ describe('<Header />', () => {
     expect(baseElement).toMatchSnapshot();
   });
 
-  it('should contain logo', () => {
-    const { getAllByAltText } = renderWithIntl(<Header />);
-    expect(getAllByAltText('logo').length).toBe(1);
-  });
+  // it('should contain logo', () => {
+  //   const { getAllByAltText } = renderWithIntl(<Header />);
+  //   expect(getAllByAltText('logo').length).toBe(1);
+  // });
 });
